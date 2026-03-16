@@ -9,7 +9,7 @@ const mockNeighbors = [
   { serial: '414c434cb26bc989', estado: 'OK', ontRx: '-20.7', oltRx: '-25.38' },
   { serial: '414c434cb26bc989', estado: 'OK', ontRx: '-20.7', oltRx: '-25.38' },
   { serial: '414c434cb26bc989', estado: 'OK', ontRx: '-20.7', oltRx: '-25.38' },
-  { serial: '414c434cb26bc989', estado: 'Apagada', ontRx: '-20.7', oltRx: '-25.38' },
+  { serial: '414c434cb26bc989', estado: 'Apag.', ontRx: '-20.7', oltRx: '-25.38' },
   { serial: '414c434cb26bc989', estado: 'OK', ontRx: '-20.7', oltRx: '-25.38' }
 ];
 
@@ -31,7 +31,6 @@ const estadoTemplate = (row: (typeof mockNeighbors)[number]) => {
   const isOk = row.estado.toUpperCase() === 'OK';
   return (
     <span className="inline-flex items-center justify-center gap-1">
-      {row.estado}
       {isOk ? (
         <IoCheckmarkSharp size={15} className="bg-(--ok-color) rounded-full text-white" />
       ) : (

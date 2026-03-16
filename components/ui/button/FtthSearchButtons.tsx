@@ -10,28 +10,28 @@ const searchButtons = [
     title: 'Búsqueda por dirección',
     icon: <FiMapPin size={24} />,
     chevron: true,
-    href: '/ftth/search/address'
+    href: '/ftth/busqueda/direccion'
   },
   {
     id: 'network',
     title: 'Búsqueda por elemento de red',
     icon: <TbNetwork size={24} />,
     chevron: true,
-    href: '/ftth/search/network-element'
+    href: '/ftth/busqueda/elemento-de-red'
   },
   {
     id: 'dni',
     title: 'Búsqueda por DNI',
     icon: <FaRegIdCard size={24} />,
     chevron: true,
-    href: '/ftth/search/dni'
+    href: '/ftth/busqueda/dni'
   },
   {
     id: 'tree',
     title: 'Búsqueda de árbol',
     icon: <FaSitemap size={24} />,
     chevron: true,
-    href: '/ftth/search/tree'
+    href: '/ftth/busqueda/arbol'
   }
 ];
 

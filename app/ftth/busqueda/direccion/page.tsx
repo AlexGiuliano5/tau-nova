@@ -3,7 +3,7 @@ import { FtthBreadcrumb } from '@/components';
 export default function AddressPage() {
   return (
     <>
-      <FtthBreadcrumb title="Búsqueda por dirección" backHref="/ftth/search" />
+      <FtthBreadcrumb title="Búsqueda por dirección" backHref="/ftth/busqueda" />
       <div className="px-5 pt-5">AddressPage</div>
     </>
   );

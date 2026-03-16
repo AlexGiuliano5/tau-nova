@@ -1,5 +1,4 @@
-import { FtthBreadcrumb } from '@/components';
-import { OntDetailTabs } from './ui/OntDetailTabs';
+import { OntDetailHeader } from './ui/OntDetailHeader';
 
 interface Props {
   children: React.ReactNode;
@@ -11,12 +10,7 @@ export default async function OntDetailLayout({ children, params }: Props) {
 
   return (
     <section className="pb-2">
-      <FtthBreadcrumb
-        title={`ONT ${decodeURIComponent(ont)}`}
-        backHref="/ftth/search/network-element"
-        showLinkIndicator
-      />
-      <OntDetailTabs />
+      <OntDetailHeader ont={ont} />
       {children}
     </section>
   );

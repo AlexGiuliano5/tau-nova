@@ -12,7 +12,7 @@ export const MobileBottomNav = () => {
   const isSideMenuOpen = useUIstore(state => state.isSideMenuOpen);
   const pathname = usePathname();
   const isHomeActive = pathname === '/ftth';
-  const isSearchActive = pathname.startsWith('/ftth/search');
+  const isSearchActive = pathname.startsWith('/ftth/busqueda');
   const isReportActive = pathname.startsWith('/ftth/report');
 
   return (
@@ -36,7 +36,7 @@ export const MobileBottomNav = () => {
       </Link>
 
       <Link
-        href="/ftth/search"
+        href="/ftth/busqueda"
         aria-current={isSearchActive ? 'page' : undefined}
         className="flex flex-col items-center text-(--footer-icon-text)"
       >

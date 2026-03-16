@@ -9,7 +9,7 @@ interface Props {
 
 export const FtthBreadcrumb = ({
   title,
-  backHref = '/ftth/search',
+  backHref = '/ftth/busqueda',
   showLinkIndicator = false
 }: Props) => {
   return (

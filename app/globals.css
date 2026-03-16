@@ -108,3 +108,81 @@ body {
 .ont-detail-tab-active {
   box-shadow: inset 0 -3px 0 var(--ont-tab-active-underline);
 }
+
+/* PrimeReact DataTable checkbox fix (unstyled mode) */
+.p-hidden-accessible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.p-datatable .p-checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.p-datatable .p-checkbox-input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0 !important;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.p-datatable .p-checkbox .p-checkbox-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgb(0 0 0 / 0.25);
+  border-radius: 3px;
+  background: #fff;
+}
+
+.dm .p-datatable .p-checkbox .p-checkbox-box {
+  border-color: rgb(255 255 255 / 0.35);
+  background: #121212;
+}
+
+.p-datatable .p-checkbox.p-highlight .p-checkbox-box {
+  border-color: var(--color-primary-mobile-2);
+  background: var(--color-primary-mobile-2);
+  color: #fff;
+}
+
+.p-datatable .p-checkbox[data-p-highlight='true'] .p-checkbox-box {
+  border-color: var(--color-primary-mobile-2);
+  background: var(--color-primary-mobile-2);
+  color: #fff;
+}
+
+.dm .p-datatable .p-checkbox.p-highlight .p-checkbox-box {
+  background: var(--color-primary-mobile-2);
+}
+
+.p-datatable .p-checkbox.p-highlight .p-checkbox-icon {
+  color: #fff;
+}
+
+.p-datatable .p-checkbox[data-p-highlight='true'] .p-checkbox-icon {
+  color: #fff;
+}

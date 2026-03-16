@@ -3,11 +3,11 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useParams, useSelectedLayoutSegment } from 'next/navigation';
-export type OntDetailTabId = 'info' | 'historic-graphs';
+export type OntDetailTabId = 'info' | 'graficos-historicos';
 
 const tabs: Array<{ id: OntDetailTabId; label: string }> = [
   { id: 'info', label: 'Información' },
-  { id: 'historic-graphs', label: 'Gráficos históricos' }
+  { id: 'graficos-historicos', label: 'Gráficos históricos' }
 ];
 
 export const OntDetailTabs = () => {
