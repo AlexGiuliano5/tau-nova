@@ -1,0 +1,131 @@
+'use client';
+
+import clsx from 'clsx';
+import { useEffect } from 'react';
+
+import {
+  IoChevronForward,
+  IoLogOutOutline,
+  IoMoonOutline,
+  IoNotificationsOutline,
+  IoSettingsOutline
+} from 'react-icons/io5';
+
+import { useUIstore } from '@/store/ui/ui-store';
+
+export const Sidebar = () => {
+  const isSideMenuOpen = useUIstore(state => state.isSideMenuOpen);
+  const closeSideMenu = useUIstore(state => state.closeSideMenu);
+  const isDarkMode = useUIstore(state => state.isDarkMode);
+  const toggleDarkMode = useUIstore(state => state.toggleDarkMode);
+
+  useEffect(() => {
+    document.body.style.overflow = isSideMenuOpen ? 'hidden' : '';
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isSideMenuOpen]);
+
+  return (
+    <div
+      className={clsx(
+        'fixed inset-x-0 bottom-0 top-[70px] z-40 transition-opacity duration-300',
+        isSideMenuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+      )}
+    >
+      <button
+        type="button"
+        aria-label="Cerrar menú"
+        className="absolute inset-0 bg-black/20"
+        onClick={closeSideMenu}
+      />
+
+      <nav
+        className={clsx(
+          'absolute inset-y-0 right-0 h-full w-full bg-(--sidebar-bg) transform transition-transform duration-300 flex flex-col overflow-y-auto',
+          {
+            'translate-x-full': !isSideMenuOpen
+          }
+        )}
+      >
+        <div className="flex flex-col items-center text-white pt-10">
+          <h1 className="text-3xl font-semibold rounded-full bg-white/20 border border-white/40 w-25 h-25 flex items-center justify-center shadow-lg">
+            AG
+          </h1>
+          <div className="flex flex-col items-center mt-5 gap-1">
+            <h2 className="text-lg font-semibold">Alex Gabriel Giuliano</h2>
+            <span className="text-sm text-white/60">AGiuliano@personal.com.ar</span>
+          </div>
+        </div>
+
+        <div className="w-full bg-(--sidebar-panel-bg) mt-10 rounded-t-3xl p-4 flex-1 flex flex-col min-h-0 overflow-y-auto">
+          <span className="text-sm font-semibold text-(--app-text-secondary) opacity-50">
+            Ajustes
+          </span>
+          <div className="flex flex-col h-full w-full my-4 min-h-max">
+            <div className="flex flex-col gap-5">
+              <button type="button" className="flex items-center gap-2 w-full h-[80px]">
+                <div className="flex gap-2 items-center w-11/12">
+                  <IoSettingsOutline size={24} className="text-primary-light-mobile-2" />
+                  <span className="text-lg font-semibold">Preferencias</span>
+                </div>
+                <div className="flex items-center justify-end w-1/12">
+                  <IoChevronForward size={24} />
+                </div>
+              </button>
+
+              <button type="button" className="flex items-center gap-2 w-full h-[80px]">
+                <div className="flex gap-2 items-center w-11/12">
+                  <IoNotificationsOutline size={24} className="text-orange-400" />
+                  <span className="text-lg font-semibold">Notificaciones</span>
+                </div>
+                <div className="flex items-center justify-end w-1/12">
+                  <IoChevronForward size={24} />
+                </div>
+              </button>
+
+              <div className="flex items-center gap-2 w-full h-[80px]">
+                <div className="flex gap-2 items-center w-9/12">
+                  <IoMoonOutline size={24} className="text-violet-600" />
+                  <span className="text-lg font-semibold">Modo oscuro</span>
+                </div>
+                <div className="flex items-center justify-end w-3/12">
+                  <button
+                    type="button"
+                    aria-label="Activar o desactivar modo oscuro"
+                    aria-pressed={isDarkMode}
+                    onClick={toggleDarkMode}
+                    className={clsx(
+                      'relative inline-flex h-7 w-13 items-center rounded-full transition-colors',
+                      isDarkMode ? 'bg-primary-dark-mobile-2' : 'bg-text-secondary-light/20'
+                    )}
+                  >
+                    <span
+                      className={clsx(
+                        'inline-block h-4 w-4 transform rounded-full bg-white transition-transform',
+                        isDarkMode ? 'translate-x-8' : 'translate-x-1'
+                      )}
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-auto pt-4 sticky bottom-0 bg-(--sidebar-panel-bg)">
+              <button
+                type="button"
+                className="flex items-center gap-2 w-full h-[60px] shadow-sm rounded-lg bg-red-500/5"
+              >
+                <div className="flex gap-2 items-center justify-center w-full ">
+                  <IoLogOutOutline size={24} className="text-red-500" />
+                  <span className="text-lg font-semibold text-red-500">Cerrar sesión</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  );
+};

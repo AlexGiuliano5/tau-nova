@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TAU Nova Frontend
 
-## Getting Started
+Frontend de nueva generación para TAU, en proceso de migración desde `portalredes` (Angular) a Next.js.
 
-First, run the development server:
+## ¿Qué es esta aplicación?
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+TAU Nova es el portal web para la recolección de métricas para los elementos de red.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contexto rápido
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Proyecto nuevo en Next.js (no convivencia con `ppf` de proyecto angular).
+- La persistencia y datos de negocio se resuelven vía BFF.
+- Este repo contiene la UI y la lógica de frontend/server-side de Next.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Stack principal
 
-## Learn More
+- Next.js (App Router)
+- React + TypeScript
+- Tailwind CSS
+- PrimeReact
+- Recharts
+- Zustand
+- React Hook Form + Zod
+- Biome
 
-To learn more about Next.js, take a look at the following resources:
+## Primeros pasos (local)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clonar el repositorio
+2. Instalar dependencias:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```npm install```
 
-## Deploy on Vercel
+3. Levantar el proyecto:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```npm run dev```
