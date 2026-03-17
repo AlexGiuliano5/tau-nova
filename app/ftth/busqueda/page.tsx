@@ -1,5 +1,4 @@
-import { FtthBreadcrumb } from '@/components';
-import { FtthSearchButtons } from '@/components';
+import { FtthBreadcrumb, FtthSearchButtons } from '@/components';
 
 export default function FTTHSearchPage() {
   return (

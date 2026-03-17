@@ -17,6 +17,7 @@ export default function NetworkElementPage() {
     <>
       <FtthBreadcrumb title="Búsqueda por elemento de red" backHref="/ftth/busqueda" />
       <NetworkElementSearchForm recentSearches={recentSearches} />
+      {/* TODO: Agregar ícono de información */}
       {/* <div className="m-5 p-5 shadow-sm flex items-center gap-3 bg-(--app-text-info)/5 text-(--app-text-info) rounded-md dark:border dark:border-[#3aa7ff]/60 dark:shadow-[0_8px_18px_rgb(0_0_0/0.35)]">
         <div>
           <IoInformationCircleOutline size={24} />

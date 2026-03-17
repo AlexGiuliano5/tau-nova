@@ -30,6 +30,27 @@ TAU Nova es el portal web para la recolección de métricas para los elementos d
 
 ```npm install```
 
-3. Levantar el proyecto:
+3. Crear archivo de entorno local a partir del ejemplo:
+
+```bash
+# Opcion 1 (si tu shell soporta cp)
+cp .env.example .env.local
+
+# Opcion 2
+# duplicar .env.example y renombrarlo a .env.local
+```
+
+4. Completar `BFF_API_BASE_URL` en `.env.local` con la URL del ambiente que corresponda.
+
+5. Levantar el proyecto:
 
 ```npm run dev```
+
+## Variables de entorno
+
+- `BFF_API_BASE_URL`: URL base del BFF (ej: `https://tau-bff.telecom.com.ar/`)
+
+## Notas
+
+- `.env.local` es local de cada desarrollador y no se versiona.
+- `.env.example` se versiona como plantilla para el equipo.

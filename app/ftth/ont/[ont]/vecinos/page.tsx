@@ -1,6 +1,6 @@
-import { AppDataTableFull } from '@/components';
+import { OntNeighborsTableFull } from '@/components';
 
 export default async function OntVecinosPage() {
 
-  return <AppDataTableFull />
+  return <OntNeighborsTableFull />
 }

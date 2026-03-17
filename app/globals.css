@@ -3,96 +3,78 @@
 @custom-variant dark (&:where(.dm, .dm *));
 
 @theme {
-  --color-primary-light-mobile: #189ae0;
-  --color-primary-light-mobile-2: #0076c7;
-  --color-secondary-light: #3d00a9;
-  --color-secondary-light-mobile-2: #052c50;
-  --color-bg-light: #f7f7f7;
-  --color-card-light: #ffffff;
-  --color-outline-light: #e3dee8;
-  --color-divider-light: #929292;
-  --color-text-light: #000000;
-  --color-text-secondary-light: #3a3a3a;
+  /* Figma base */
+  --white: #ffffff;
+  --gris-fondo-teco: #f7f7f7;
+  --outline-teco: #e3dee8;
+  --violeta-iconos-teco: #e8dffa;
+  --background-teco: #f7f4ff;
 
-  --color-primary-dark-mobile: #3d00a9;
-  --color-primary-dark-mobile-2: #281e5a;
-  --color-secondary-dark: #140232;
-  --color-secondary-dark-mobile-2: #a07af8;
-  --color-bg-dark: #121212;
-  --color-card-dark: #1f1f1f;
-  --color-outline-dark: #e3dee8;
-  --color-divider-dark: #929292;
-  --color-text-dark: #f5f5f5;
-  --color-text-secondary-dark: #d0d0d0;
-  --color-btn-active-dark: #221079;
+  /* Figma grays */
+  --gray-01: #c4c4c4;
+  --gray-02: #555555;
+  --gray-03: #262626;
+  --gray-04: #000000;
 
-  --ok-color: #4cd964;
-  --null-color: #c4c4c4;
-  --error-color: #fe414d;
-  --info-color: #189ae0;
+  /* Figma states */
+  --state-01: #6ca652;
+  --state-02: #edb846;
+  --state-03: #fe414d;
+  --tag-state-01: #b5efda;
+  --tag-state-02: #ffebb7;
+  --tag-state-03: #ffc3c3;
+
+  /* Figma cards */
+  --card-green: #4cd964;
+  --card-red: #ff3b30;
+  --card-yellow: #ffd700;
+  --card-gray: #eaeaea;
 }
 
-/* Theme primitives: light by default */
 :root {
-  --color-primary-mobile: var(--color-primary-light-mobile);
-  --color-primary-mobile-2: var(--color-primary-light-mobile-2);
-  --color-secondary-mobile-2: var(--color-secondary-light-mobile-2);
-  --color-bg-mobile: var(--color-bg-light);
-  --color-card-mobile: var(--color-card-light);
-  --color-text-mobile: var(--color-text-light);
-  --color-text-secondary-mobile: var(--color-text-secondary-light);
-  --color-divider-mobile: rgb(0 0 0 / 0.2);
-  --color-status-ok-bg-mobile: rgb(74 222 128 / 0.24);
-  --color-status-ok-text-mobile: #047857;
-  --color-status-ok-border-mobile: rgb(34 197 94 / 0.55);
-
-  /* Semantic tokens consumed by components */
-  --app-bg: var(--color-bg-mobile);
-  --app-card: var(--color-card-mobile);
-  --app-text: var(--color-text-mobile);
-  --app-text-secondary: var(--color-text-secondary-mobile);
-  --app-text-info: var(--color-primary-mobile-2);
-  --topbar-bg: var(--color-primary-mobile);
-  --breadcrumb-bg: var(--color-primary-mobile-2);
-  --sidebar-bg: var(--color-primary-mobile-2);
-  --sidebar-panel-bg: var(--color-card-mobile);
-  --footer-bg: var(--color-card-mobile);
-  --footer-icon-text: var(--color-primary-mobile-2);
-  --footer-active-chip-bg: rgb(0 118 199 / 0.2);
-  --ftth-button-bg: var(--color-primary-mobile-2);
-  --ftth-button-active-bg: #00599a;
-  --text-secondary: var(--color-text-secondary-mobile);
-  --ont-tab-active-underline: var(--color-secondary-mobile-2);
-  --status-ok-bg: var(--color-status-ok-bg-mobile);
-  --status-ok-text: var(--color-status-ok-text-mobile);
-  --status-ok-border: var(--color-status-ok-border-mobile);
-  --card-divider: var(--color-divider-mobile);
+  /* Figma semantic tokens - light */
+  --primary: #189ae0;
+  --primary-2: #0076c7;
+  --primary-3: #052c50;
+  --secondary: #3d00a9;
+  --secondary-2: #052c50;
+  --secondary-3: #281e5a;
+  --secondary-4: #140232;
+  --background: #f7f7f7;
+  --card: #ffffff;
+  --outline: #e3dee8;
+  --divisor: #929292;
+  --text-primary: #000000;
+  --text-secondary: #3a3a3a;
+  --table-header: #f8fafc;
+  --table-stroke: #e2e8f0;
+  --table-content: #ffffff;
 }
 
-/* Theme primitives: dark override */
 html.dm {
-  --color-primary-mobile: var(--color-primary-dark-mobile);
-  --color-primary-mobile-2: var(--color-primary-dark-mobile-2);
-  --color-secondary-mobile-2: var(--color-secondary-dark-mobile-2);
-  --color-bg-mobile: var(--color-bg-dark);
-  --color-card-mobile: var(--color-card-dark);
-  --color-text-mobile: var(--color-text-dark);
-  --color-text-secondary-mobile: var(--color-text-secondary-dark);
-  --color-divider-mobile: rgb(255 255 255 / 0.24);
-  --color-status-ok-bg-mobile: rgb(34 197 94 / 0.22);
-  --color-status-ok-text-mobile: #86efac;
-  --color-status-ok-border-mobile: rgb(74 222 128 / 0.5);
-
-  --footer-active-chip-bg: rgb(255 255 255 / 0.2);
-  --footer-bg: var(--color-primary-mobile);
-  --footer-icon-text: var(--color-text-mobile);
-  --sidebar-panel-bg: var(--color-bg-mobile);
-  --ftth-button-active-bg: #221079;
+  /* Figma semantic tokens - dark */
+  --primary: #0076c7;
+  --primary-2: #0076c7;
+  --primary-3: #052c50;
+  --secondary: #a07af8;
+  --secondary-2: #3d00a9;
+  --secondary-3: #281e5a;
+  --secondary-4: #140232;
+  --background: #121212;
+  --card: #1f1f1f;
+  --outline: #e3dee8;
+  --divisor: #929292;
+  --text-primary: #f5f5f5;
+  --text-secondary: #d0d0d0;
+  --table-header: #2b2b2b;
+  /* Figma: table-stroke dark con /25 */
+  --table-stroke: rgb(242 242 242 / 0.25);
+  --table-content: #1f1f1f;
 }
 
 body {
-  background-color: var(--app-bg);
-  color: var(--app-text);
+  background-color: var(--background);
+  color: var(--text-primary);
 }
 
 .fade-in {
@@ -106,7 +88,23 @@ body {
 }
 
 .ont-detail-tab-active {
-  box-shadow: inset 0 -3px 0 var(--ont-tab-active-underline);
+  position: relative;
+  box-shadow: none;
+  border-left: 0;
+}
+
+.ont-detail-tab-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background-color: var(--primary-3);
+}
+
+html.dm .ont-detail-tab-active::after {
+  background-color: var(--secondary);
 }
 
 /* PrimeReact DataTable checkbox fix (unstyled mode) */
@@ -160,29 +158,58 @@ body {
 
 .dm .p-datatable .p-checkbox .p-checkbox-box {
   border-color: rgb(255 255 255 / 0.35);
-  background: #121212;
+  background: transparent;
+}
+
+.dm .p-datatable .p-checkbox:not(.p-highlight) .p-checkbox-box,
+.dm .p-datatable .p-checkbox[data-p-highlight="false"] .p-checkbox-box {
+  border-color: rgb(255 255 255 / 0.35) !important;
+  background: transparent !important;
 }
 
 .p-datatable .p-checkbox.p-highlight .p-checkbox-box {
-  border-color: var(--color-primary-mobile-2);
-  background: var(--color-primary-mobile-2);
+  border-color: var(--primary-2);
+  background: var(--primary-2);
   color: #fff;
 }
 
-.p-datatable .p-checkbox[data-p-highlight='true'] .p-checkbox-box {
-  border-color: var(--color-primary-mobile-2);
-  background: var(--color-primary-mobile-2);
+.p-datatable .p-checkbox[data-p-highlight="true"] .p-checkbox-box {
+  border-color: var(--primary-2);
+  background: var(--primary-2);
   color: #fff;
 }
 
 .dm .p-datatable .p-checkbox.p-highlight .p-checkbox-box {
-  background: var(--color-primary-mobile-2);
+  border-color: var(--secondary) !important;
+  background: var(--secondary) !important;
+}
+
+.dm .p-datatable .p-checkbox[data-p-highlight="true"] .p-checkbox-box {
+  border-color: var(--secondary) !important;
+  background: var(--secondary) !important;
 }
 
 .p-datatable .p-checkbox.p-highlight .p-checkbox-icon {
   color: #fff;
 }
 
-.p-datatable .p-checkbox[data-p-highlight='true'] .p-checkbox-icon {
+.p-datatable .p-checkbox[data-p-highlight="true"] .p-checkbox-icon {
   color: #fff;
+}
+
+.app-data-table-full .p-paginator .p-paginator-page[aria-current='page'],
+.app-data-table-full .p-paginator .p-paginator-page.p-highlight,
+.app-data-table-full .p-paginator .p-paginator-page[data-p-highlight='true'] {
+  border-color: var(--primary) !important;
+  background: var(--primary) !important;
+  color: #fff !important;
+  border-radius: 9999px !important;
+}
+
+.dm .app-data-table-full .p-paginator .p-paginator-page[aria-current='page'],
+.dm .app-data-table-full .p-paginator .p-paginator-page.p-highlight,
+.dm .app-data-table-full .p-paginator .p-paginator-page[data-p-highlight='true'] {
+  border-color: var(--secondary) !important;
+  background: var(--secondary) !important;
+  color: #fff !important;
 }

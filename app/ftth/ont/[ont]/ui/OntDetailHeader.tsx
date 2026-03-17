@@ -1,30 +1,27 @@
-'use client';
-
 import { FtthBreadcrumb } from '@/components';
-import { useSelectedLayoutSegment } from 'next/navigation';
 import { OntDetailTabs } from './OntDetailTabs';
 
 interface Props {
   ont: string;
+  backHref?: string;
+  showTabs?: boolean;
+  showLinkIndicator?: boolean;
 }
 
-export const OntDetailHeader = ({ ont }: Props) => {
-  const segment = useSelectedLayoutSegment();
-  const isVecinosPage = segment === 'vecinos';
-  const encodedOnt = encodeURIComponent(ont);
-
+export const OntDetailHeader = ({
+  ont,
+  backHref = '/ftth/busqueda/elemento-de-red',
+  showTabs = true,
+  showLinkIndicator = false
+}: Props) => {
   return (
     <>
       <FtthBreadcrumb
         title={`ONT ${decodeURIComponent(ont)}`}
-        backHref={
-          isVecinosPage
-            ? `/ftth/ont/${encodedOnt}/info`
-            : '/ftth/busqueda/elemento-de-red'
-        }
-        showLinkIndicator
+        backHref={backHref}
+        showLinkIndicator={showLinkIndicator}
       />
-      {!isVecinosPage && <OntDetailTabs />}
+      {showTabs && <OntDetailTabs />}
     </>
   );
 };

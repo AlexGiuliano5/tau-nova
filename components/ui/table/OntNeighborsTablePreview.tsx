@@ -1,9 +1,12 @@
 'use client';
 
 import Link from 'next/link';
+
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { IoCheckmarkSharp, IoCloseSharp } from 'react-icons/io5';
+
+import { ONT_NEIGHBORS_TABLE_PREVIEW_CLASSNAME } from './tableClassNames';
 
 const mockNeighbors = [
   { serial: '414c434cb26bc989', estado: 'OK', ontRx: '-20.7', oltRx: '-25.38' },
@@ -20,7 +23,7 @@ const splitSerialInTwoRows = (serial: string) => {
   return (
     <Link
       href={`/ftth/ont/${encodeURIComponent(serial)}/info`}
-      className="inline-flex text-center text-(--info-color) hover:underline dark:text-secondary-dark-mobile-2"
+      className="inline-flex text-center text-(--primary) hover:underline dark:text-(--secondary)"
     >
       <span>{abbreviatedSerial}</span>
     </Link>
@@ -32,21 +35,21 @@ const estadoTemplate = (row: (typeof mockNeighbors)[number]) => {
   return (
     <span className="inline-flex items-center justify-center gap-1">
       {isOk ? (
-        <IoCheckmarkSharp size={15} className="bg-(--ok-color) rounded-full text-white" />
+        <IoCheckmarkSharp size={15} className="bg-(--state-01) rounded-full text-white" />
       ) : (
-        <IoCloseSharp size={15} className="bg-(--error-color) rounded-full text-white" />
+        <IoCloseSharp size={15} className="bg-(--state-03) rounded-full text-white" />
       )}
     </span>
   );
 };
 
-export const AppDataTablePreview = () => {
+export const OntNeighborsTablePreview = () => {
   return (
     <DataTable
       value={mockNeighbors}
       tableStyle={{ minWidth: '100%', width: '100%' }}
       size="small"
-      className="w-full text-sm [&_.p-datatable-table]:w-full [&_.p-datatable-thead>tr>th]:bg-transparent [&_.p-datatable-thead>tr>th]:text-center [&_.p-datatable-thead>tr>th]:font-semibold [&_.p-datatable-thead>tr>th]:py-2 [&_.p-datatable-thead>tr>th]:border-b [&_.p-datatable-thead>tr>th]:border-black/15 [&_.p-column-header-content]:justify-center [&_.p-datatable-tbody>tr>td]:text-center [&_.p-datatable-tbody>tr>td]:py-1.5 [&_.p-datatable-tbody>tr>td]:border-b [&_.p-datatable-tbody>tr>td]:border-black/10 dark:[&_.p-datatable-thead>tr>th]:border-white/20 dark:[&_.p-datatable-tbody>tr>td]:border-white/10"
+      className={ONT_NEIGHBORS_TABLE_PREVIEW_CLASSNAME}
     >
       <Column
         field="serial"

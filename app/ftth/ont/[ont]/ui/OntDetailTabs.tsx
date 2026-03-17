@@ -22,7 +22,7 @@ export const OntDetailTabs = () => {
   return (
     <nav
       aria-label="Secciones de detalle ONT"
-      className="w-full h-[50px] grid grid-cols-2 items-end text-white bg-(--breadcrumb-bg) border-t border-white/20"
+      className="w-full h-[50px] grid grid-cols-2 items-end text-white bg-(--primary-2) dark:bg-(--secondary-4) border-t border-white/20"
     >
       {tabs.map(tab => {
         const isActive = tab.id === normalizedTab;

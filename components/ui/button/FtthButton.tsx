@@ -6,7 +6,6 @@ interface BaseProps {
   title: string;
   icon?: React.ReactNode;
   chevron?: boolean;
-  isActive?: boolean;
   disabled?: boolean;
   className?: string;
   href?: string;
@@ -18,13 +17,12 @@ export const FtthButton = ({
   title,
   icon,
   chevron = false,
-  isActive = false,
   href,
   disabled = false,
   className
 }: Props) => {
   const buttonClassName = clsx(
-    'flex items-center px-5 w-full h-[60px] gap-4 rounded-lg shadow-lg text-white',
+    'flex items-center px-5 w-full h-[60px] gap-4 rounded-lg shadow-lg text-white bg-(--primary-2) dark:bg-(--secondary-3)',
     { 'opacity-50 cursor-not-allowed': disabled },
     className
   );
@@ -44,27 +42,14 @@ export const FtthButton = ({
   // Si recibe `href`, renderiza navegación; si no, renderiza un botón de acción.
   if (href && !disabled) {
     return (
-      <Link
-        href={href}
-        className={buttonClassName}
-        style={{
-          backgroundColor: isActive ? 'var(--ftth-button-active-bg)' : 'var(--ftth-button-bg)'
-        }}
-      >
+      <Link href={href} className={buttonClassName}>
         {content}
       </Link>
     );
   }
 
   return (
-    <button
-      type="button"
-      disabled={disabled}
-      className={buttonClassName}
-      style={{
-        backgroundColor: isActive ? 'var(--ftth-button-active-bg)' : 'var(--ftth-button-bg)'
-      }}
-    >
+    <button type="button" disabled={disabled} className={buttonClassName}>
       {content}
     </button>
   );

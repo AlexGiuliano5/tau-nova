@@ -1,8 +1,8 @@
-import { OntClientCard } from '../ui/OntClientCard';
-import { OntInfoCard } from '../ui/OntInfoCard';
-import { OntInterrupcionesCard } from '../ui/OntInterrupcionesCard';
-import { OntMetricsCard } from '../ui/OntMetricsCard';
-import { OntVecinosCard } from '../ui/OntVecinosCard';
+import { OntClientCard } from '../../ui/OntClientCard';
+import { OntInfoCard } from '../../ui/OntInfoCard';
+import { OntInterrupcionesCard } from '../../ui/OntInterrupcionesCard';
+import { OntMetricsCard } from '../../ui/OntMetricsCard';
+import { OntVecinosCard } from '../../ui/OntVecinosCard';
 
 interface Props {
   params: Promise<{ ont: string }>;

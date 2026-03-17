@@ -24,7 +24,7 @@ export const NetworkElementSearchForm = ({ recentSearches }: Props) => {
   const searchHref = trimmedValue ? `/ftth/ont/${encodeURIComponent(trimmedValue)}` : undefined;
 
   return (
-    <div className="m-5 flex flex-col gap-5 rounded-md dark:bg-(--app-card) dark:border dark:border-white/15 dark:shadow-[0_10px_20px_rgb(0_0_0/0.45)] h-[calc(100dvh-250px)] justify-between">
+    <div className="m-5 flex flex-col gap-5 rounded-md dark:bg-(--card) p-3 dark:border dark:border-white/15 dark:shadow-[0_10px_20px_rgb(0_0_0/0.45)] h-[calc(100dvh-250px)] justify-between">
       <div className="flex flex-col gap-7">
         <div className="flex flex-col gap-2">
           <span className="font-semibold text-lg">Ingrese elemento de red</span>
