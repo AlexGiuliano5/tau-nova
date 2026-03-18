@@ -11,6 +11,10 @@ Implementar autenticación base para ambientes bajos, con login por usuario/cont
 - Se implementó login con persistencia de sesión en cookie y logout que limpia sesión y redirige a `/login`.
 - Se protegieron todas las rutas dentro de `/ftth`: sin token en cookie, redirige a `/login`.
 - Se muestran datos del usuario en el sidebar (iniciales, nombre y legajo) a partir del token.
+- Se implementó búsqueda de árbol FTTH con navegación jerárquica (`pais -> region -> subregion -> hub -> olt`) y breadcrumb dinámico.
+- Se agregó pantalla placeholder de OLT en `/ftth/olt/[olt]`.
+- Se incorporó cache de árbol en `localStorage` con TTL de 30 días.
+- El refresh del árbol contra BFF se ejecuta solo al entrar desde login (`/ftth?refreshTree=1`).
 
 ## Decisiones tomadas
 

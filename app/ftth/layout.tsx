@@ -1,14 +1,14 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { FtthTopBar, MobileBottomNav, Sidebar } from '@/components';
-import { parseUserTokenInfo } from '@/lib/auth/jwt';
+import { isTokenExpired, parseUserTokenInfo } from '@/lib/auth/jwt';
 import { getAuthTokenFromCookieStore } from '@/lib/auth/session';
 
 export default async function FTTHLayout({ children }: { children: React.ReactNode }) {
   const cookieStore = await cookies();
   const token = getAuthTokenFromCookieStore(cookieStore);
 
-  if (!token) {
+  if (!token || isTokenExpired(token)) {
     redirect('/login');
   }
 

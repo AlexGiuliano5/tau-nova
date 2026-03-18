@@ -23,6 +23,25 @@ export function parseUserTokenInfo(token: string): UserTokenInfo {
   };
 }
 
+export function isTokenExpired(token: string): boolean {
+  const payload = parseJwtPayload(token);
+
+  if (!payload || typeof payload !== 'object') {
+    return true;
+  }
+
+  const data = payload as Record<string, unknown>;
+  const exp = data.exp;
+
+  // Si el claim no existe o no es numerico, se trata como token no valido.
+  if (typeof exp !== 'number') {
+    return true;
+  }
+
+  const nowInSeconds = Math.floor(Date.now() / 1000);
+  return exp <= nowInSeconds;
+}
+
 function parseJwtPayload(token: string): unknown {
   const parts = token.split('.');
   if (parts.length < 2) {

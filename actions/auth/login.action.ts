@@ -37,7 +37,7 @@ export async function loginAction(_prevState: LoginState, formData: FormData): P
     maxAge: 60 * 60 * 20
   });
 
-  redirect('/ftth');
+  redirect('/ftth?refreshTree=1');
 }
 
 export async function logoutAction(): Promise<void> {

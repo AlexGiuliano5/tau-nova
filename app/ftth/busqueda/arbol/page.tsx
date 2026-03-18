@@ -1,10 +1,5 @@
-import { FtthBreadcrumb } from '@/components';
+import { FtthTreeNavigator } from './ui/FtthTreeNavigator';
 
 export default function TreePage() {
-  return (
-    <>
-      <FtthBreadcrumb title="Búsqueda de árbol" backHref="/ftth/busqueda" />
-      <div className="px-5 pt-5">TreePage</div>
-    </>
-  );
+  return <FtthTreeNavigator />;
 }

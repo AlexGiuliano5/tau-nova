@@ -13,6 +13,8 @@ import {
 import { useShallow } from 'zustand/react/shallow';
 
 import { logoutAction } from '@/actions/auth/login.action';
+import { clearTreeFromLocalStorage } from '@/lib/ftth/tree-cache';
+import { useFtthTreeStore } from '@/store/ftth/tree-store';
 import { useUIstore } from '@/store/ui/ui-store';
 
 interface SidebarProps {
@@ -47,6 +49,7 @@ function getInitials(fullname?: string): string {
 }
 
 export const Sidebar = ({ userInfo }: SidebarProps) => {
+  const clearTreeData = useFtthTreeStore(state => state.clearTreeData);
   const { isSideMenuOpen, closeSideMenu, isDarkMode, toggleDarkMode } = useUIstore(
     useShallow(state => ({
       isSideMenuOpen: state.isSideMenuOpen,
@@ -149,6 +152,9 @@ export const Sidebar = ({ userInfo }: SidebarProps) => {
               <form
                 action={logoutAction}
                 onSubmit={() => {
+                  // Logout intencional: limpiar estado/copia local del arbol antes de salir.
+                  clearTreeData();
+                  clearTreeFromLocalStorage();
                   closeSideMenu();
                 }}
               >
