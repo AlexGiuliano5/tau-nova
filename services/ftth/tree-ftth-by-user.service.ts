@@ -1,23 +1,14 @@
+import { getBffBaseUrl, parseJsonResponse } from '@/lib/bff/http';
 import type { BffTreeResponse } from '@/types/ftth/tree';
 
 interface GetTreeFtthByUserInput {
   token: string;
 }
 
-function getBaseUrl(): string {
-  const baseUrl = process.env.BFF_API_BASE_URL?.trim();
-
-  if (!baseUrl) {
-    throw new Error('Falta definir BFF_API_BASE_URL.');
-  }
-
-  return baseUrl.replace(/\/+$/, '');
-}
-
 export async function getTreeFtthByUser({
   token
 }: GetTreeFtthByUserInput): Promise<BffTreeResponse | null> {
-  const url = `${getBaseUrl()}/api/services/portal/treeFtthByUser`;
+  const url = `${getBffBaseUrl()}/api/services/portal/treeFtthByUser`;
 
   try {
     const response = await fetch(url, {
@@ -39,27 +30,13 @@ export async function getTreeFtthByUser({
       return null;
     }
 
-    const data = await parseResponseJson<BffTreeResponse>(response);
+    const data = (await parseJsonResponse(response)) as BffTreeResponse | null;
 
     if (!data || !Array.isArray(data.tree) || !Array.isArray(data.treeArray)) {
       return null;
     }
 
     return data;
-  } catch {
-    return null;
-  }
-}
-
-async function parseResponseJson<T>(response: Response): Promise<T | null> {
-  const rawBody = await response.text();
-
-  if (!rawBody) {
-    return null;
-  }
-
-  try {
-    return JSON.parse(rawBody) as T;
   } catch {
     return null;
   }

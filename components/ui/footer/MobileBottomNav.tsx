@@ -37,7 +37,6 @@ export const MobileBottomNav = () => {
         >
           <FiHome size={32} />
         </div>
-        {/* <span>Inicio</span> */}
       </Link>
 
       <Link
@@ -52,17 +51,16 @@ export const MobileBottomNav = () => {
         >
           <FiSearch size={32} />
         </div>
-        {/* <span>Búsqueda</span> */}
       </Link>
 
       <button
         type="button"
+        disabled
         aria-disabled="true"
         title="Próximamente"
-        className="flex flex-col items-center text-(--primary-2) dark:text-white"
+        className="flex flex-col items-center text-(--primary-2) dark:text-white opacity-50 cursor-not-allowed"
       >
         <FiTool size={32} />
-        {/* <span>Reportar</span> */}
       </button>
 
       <button
@@ -79,7 +77,6 @@ export const MobileBottomNav = () => {
         >
           <IoReaderOutline size={32} />
         </div>
-        {/* <span>Reportar</span> */}
       </button>
     </footer>
   );

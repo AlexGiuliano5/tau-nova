@@ -1,3 +1,4 @@
+import { getBffBaseUrl, parseJsonResponse } from '@/lib/bff/http';
 import type { AuthenticateApiResponse } from '@/types/auth/authenticate';
 
 interface AuthenticateResponse {
@@ -11,22 +12,12 @@ interface AuthenticateInput {
   password: string;
 }
 
-function getBaseUrl(): string {
-  const baseUrl = process.env.BFF_API_BASE_URL?.trim();
-
-  if (!baseUrl) {
-    throw new Error('Falta definir BFF_API_BASE_URL.');
-  }
-
-  return baseUrl.replace(/\/+$/, '');
-}
-
 export async function authenticate({
   username,
   password
 }: AuthenticateInput): Promise<AuthenticateResponse> {
   const encodedPassword = encodeBase64(password);
-  const url = `${getBaseUrl()}/api/v1/authenticate`;
+  const url = `${getBffBaseUrl()}/api/v1/authenticate`;
 
   try {
     const response = await fetch(url, {
@@ -42,7 +33,7 @@ export async function authenticate({
       cache: 'no-store'
     });
 
-    const data = await parseResponseJson<AuthenticateApiResponse>(response);
+    const data = (await parseJsonResponse(response)) as AuthenticateApiResponse | null;
     const token =
       data && 'token' in data && typeof data.token === 'string' && data.token.length > 0
         ? data.token
@@ -50,7 +41,10 @@ export async function authenticate({
 
     if (response.status === 202) {
       // Contrato BFF actual: 202 representa cualquier error de autenticacion.
-      return { ok: false, message: 'No fue posible iniciar sesión. Verificá los datos e intentá nuevamente.' };
+      return {
+        ok: false,
+        message: 'No fue posible iniciar sesión. Verificá los datos e intentá nuevamente.'
+      };
     }
 
     if (token) {
@@ -72,19 +66,4 @@ export async function authenticate({
 function encodeBase64(value: string): string {
   const bytes = new TextEncoder().encode(value);
   return Buffer.from(bytes).toString('base64');
-}
-
-async function parseResponseJson<T>(response: Response): Promise<T | null> {
-  // Se parsea desde text() para tolerar body vacio o JSON invalido sin romper la action.
-  const rawBody = await response.text();
-
-  if (!rawBody) {
-    return null;
-  }
-
-  try {
-    return JSON.parse(rawBody) as T;
-  } catch {
-    return null;
-  }
 }

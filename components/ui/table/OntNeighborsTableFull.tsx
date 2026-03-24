@@ -15,31 +15,14 @@ import { LuFilter } from 'react-icons/lu';
 import { TbListCheck } from 'react-icons/tb';
 
 import { ONT_NEIGHBORS_TABLE_FULL_CLASSNAME } from './tableClassNames';
+import type { OntNeighborFullItem } from '@/types/ftth/ont-info';
 
-type NeighborRow = {
-  serial: string;
-  estado: 'OK' | 'ERROR';
-  ontRx: number;
-  calle: string;
-  altura: number;
-  piso: string;
-  depto: string;
-  ontTx: number;
-  oltRx: number;
-  oltTx: number;
-  oltVolt: number;
-  ontTemp: number;
-  ontVolt: number;
-  ontBiasCurrent: number;
-  oltBiasCurrent: number;
-  portTemp: number;
-  slot: number;
-  port: number;
-  provincia: string;
-};
+interface Props {
+  neighbors: OntNeighborFullItem[];
+}
 
 const ROW_OPTIONS = [25, 50, 100];
-const TABLE_COLUMNS: Array<{ field: keyof NeighborRow; header: string }> = [
+const TABLE_COLUMNS: Array<{ field: keyof OntNeighborFullItem; header: string }> = [
   { field: 'calle', header: 'Calle' },
   { field: 'altura', header: 'Altura' },
   { field: 'piso', header: 'Piso' },
@@ -58,304 +41,7 @@ const TABLE_COLUMNS: Array<{ field: keyof NeighborRow; header: string }> = [
   { field: 'provincia', header: 'Provincia' }
 ];
 
-const mockNeighborsFull: NeighborRow[] = [
-  {
-    serial: '5casfyevwob232455',
-    estado: 'ERROR',
-    ontRx: -18.07,
-    calle: 'RIVADAVIA',
-    altura: 1047,
-    piso: 'Sin datos',
-    depto: 'Sin datos',
-    ontTx: 2.18,
-    oltRx: -24.01,
-    oltTx: 4,
-    oltVolt: 3.34,
-    ontTemp: 44,
-    ontVolt: 3.34,
-    ontBiasCurrent: 16,
-    oltBiasCurrent: 16,
-    portTemp: 36,
-    slot: 1,
-    port: 0,
-    provincia: 'SALTA'
-  },
-  {
-    serial: '4354640425asdadbi',
-    estado: 'OK',
-    ontRx: -21.05,
-    calle: 'RIVADAVIA',
-    altura: 1047,
-    piso: 'Sin datos',
-    depto: 'Sin datos',
-    ontTx: 2.18,
-    oltRx: -24.01,
-    oltTx: 4,
-    oltVolt: 3.34,
-    ontTemp: 44,
-    ontVolt: 3.34,
-    ontBiasCurrent: 16,
-    oltBiasCurrent: 16,
-    portTemp: 36,
-    slot: 1,
-    port: 0,
-    provincia: 'SALTA'
-  },
-  {
-    serial: '3672434q75sdfvbjk',
-    estado: 'OK',
-    ontRx: -15.3,
-    calle: 'RIVADAVIA',
-    altura: 1047,
-    piso: 'Sin datos',
-    depto: 'Sin datos',
-    ontTx: 2.18,
-    oltRx: -24.01,
-    oltTx: 4,
-    oltVolt: 3.34,
-    ontTemp: 43,
-    ontVolt: 3.34,
-    ontBiasCurrent: 16,
-    oltBiasCurrent: 16,
-    portTemp: 36,
-    slot: 1,
-    port: 0,
-    provincia: 'SALTA'
-  },
-  {
-    serial: '279839b67t78uwxyz',
-    estado: 'OK',
-    ontRx: -8.75,
-    calle: 'RIVADAVIA',
-    altura: 1047,
-    piso: 'Sin datos',
-    depto: 'Sin datos',
-    ontTx: 2.18,
-    oltRx: -24.01,
-    oltTx: 4,
-    oltVolt: 3.34,
-    ontTemp: 43,
-    ontVolt: 3.34,
-    ontBiasCurrent: 16,
-    oltBiasCurrent: 16,
-    portTemp: 36,
-    slot: 1,
-    port: 0,
-    provincia: 'SALTA'
-  },
-  {
-    serial: '1982735234asdvbcc',
-    estado: 'ERROR',
-    ontRx: 0,
-    calle: 'RIVADAVIA',
-    altura: 1047,
-    piso: 'Sin datos',
-    depto: 'Sin datos',
-    ontTx: 2.18,
-    oltRx: -24.01,
-    oltTx: 4,
-    oltVolt: 3.34,
-    ontTemp: 44,
-    ontVolt: 3.34,
-    ontBiasCurrent: 16,
-    oltBiasCurrent: 16,
-    portTemp: 36,
-    slot: 1,
-    port: 0,
-    provincia: 'SALTA'
-  },
-  {
-    serial: '938472b49dswqerf',
-    estado: 'OK',
-    ontRx: 0.5,
-    calle: 'RIVADAVIA',
-    altura: 1047,
-    piso: 'Sin datos',
-    depto: 'Sin datos',
-    ontTx: 2.18,
-    oltRx: -24.01,
-    oltTx: 4,
-    oltVolt: 3.34,
-    ontTemp: 44,
-    ontVolt: 3.34,
-    ontBiasCurrent: 16,
-    oltBiasCurrent: 16,
-    portTemp: 36,
-    slot: 1,
-    port: 0,
-    provincia: 'SALTA'
-  },
-  {
-    serial: '12457824s5assdfghi',
-    estado: 'OK',
-    ontRx: 5.2,
-    calle: 'RIVADAVIA',
-    altura: 1047,
-    piso: 'Sin datos',
-    depto: 'Sin datos',
-    ontTx: 2.18,
-    oltRx: -24.01,
-    oltTx: 4,
-    oltVolt: 3.34,
-    ontTemp: 43,
-    ontVolt: 3.34,
-    ontBiasCurrent: 16,
-    oltBiasCurrent: 16,
-    portTemp: 36,
-    slot: 1,
-    port: 0,
-    provincia: 'SALTA'
-  },
-  {
-    serial: '5647386dsr7sdjkhg',
-    estado: 'OK',
-    ontRx: 10.15,
-    calle: 'RIVADAVIA',
-    altura: 1047,
-    piso: 'Sin datos',
-    depto: 'Sin datos',
-    ontTx: 2.18,
-    oltRx: -24.01,
-    oltTx: 4,
-    oltVolt: 3.34,
-    ontTemp: 44,
-    ontVolt: 3.34,
-    ontBiasCurrent: 16,
-    oltBiasCurrent: 16,
-    portTemp: 36,
-    slot: 1,
-    port: 0,
-    provincia: 'SALTA'
-  },
-  {
-    serial: '892134b456qwertyu',
-    estado: 'OK',
-    ontRx: 15.5,
-    calle: 'RIVADAVIA',
-    altura: 1047,
-    piso: 'Sin datos',
-    depto: 'Sin datos',
-    ontTx: 2.18,
-    oltRx: -24.01,
-    oltTx: 4,
-    oltVolt: 3.34,
-    ontTemp: 44,
-    ontVolt: 3.34,
-    ontBiasCurrent: 16,
-    oltBiasCurrent: 16,
-    portTemp: 36,
-    slot: 1,
-    port: 0,
-    provincia: 'SALTA'
-  },
-  {
-    serial: '453890lk678asdfghj',
-    estado: 'OK',
-    ontRx: 20,
-    calle: 'RIVADAVIA',
-    altura: 1047,
-    piso: 'Sin datos',
-    depto: 'Sin datos',
-    ontTx: 2.18,
-    oltRx: -24.01,
-    oltTx: 4,
-    oltVolt: 3.34,
-    ontTemp: 44,
-    ontVolt: 3.34,
-    ontBiasCurrent: 16,
-    oltBiasCurrent: 16,
-    portTemp: 36,
-    slot: 1,
-    port: 0,
-    provincia: 'SALTA'
-  },
-  {
-    serial: '675849m789qwertyui',
-    estado: 'OK',
-    ontRx: 25.75,
-    calle: 'RIVADAVIA',
-    altura: 1047,
-    piso: 'Sin datos',
-    depto: 'Sin datos',
-    ontTx: 2.18,
-    oltRx: -24.01,
-    oltTx: 4,
-    oltVolt: 3.34,
-    ontTemp: 44,
-    ontVolt: 3.34,
-    ontBiasCurrent: 16,
-    oltBiasCurrent: 16,
-    portTemp: 36,
-    slot: 1,
-    port: 0,
-    provincia: 'SALTA'
-  },
-  {
-    serial: '82374f8s9dasdqwery',
-    estado: 'OK',
-    ontRx: 30.6,
-    calle: 'RIVADAVIA',
-    altura: 1047,
-    piso: 'Sin datos',
-    depto: 'Sin datos',
-    ontTx: 2.18,
-    oltRx: -24.01,
-    oltTx: 4,
-    oltVolt: 3.34,
-    ontTemp: 44,
-    ontVolt: 3.34,
-    ontBiasCurrent: 16,
-    oltBiasCurrent: 16,
-    portTemp: 36,
-    slot: 1,
-    port: 0,
-    provincia: 'SALTA'
-  },
-  {
-    serial: '543216rp34sasdfghi',
-    estado: 'OK',
-    ontRx: 35.45,
-    calle: 'RIVADAVIA',
-    altura: 1047,
-    piso: 'Sin datos',
-    depto: 'Sin datos',
-    ontTx: 2.18,
-    oltRx: -24.01,
-    oltTx: 4,
-    oltVolt: 3.34,
-    ontTemp: 44,
-    ontVolt: 3.34,
-    ontBiasCurrent: 16,
-    oltBiasCurrent: 16,
-    portTemp: 36,
-    slot: 1,
-    port: 0,
-    provincia: 'SALTA'
-  },
-  {
-    serial: '52346rfgtr3saasdfghs',
-    estado: 'OK',
-    ontRx: 40.8,
-    calle: 'RIVADAVIA',
-    altura: 1047,
-    piso: 'Sin datos',
-    depto: 'Sin datos',
-    ontTx: 2.18,
-    oltRx: -24.01,
-    oltTx: 4,
-    oltVolt: 3.34,
-    ontTemp: 44,
-    ontVolt: 3.34,
-    ontBiasCurrent: 16,
-    oltBiasCurrent: 16,
-    portTemp: 36,
-    slot: 1,
-    port: 0,
-    provincia: 'SALTA'
-  }
-];
-
-const serialTemplate = (row: NeighborRow) => {
+const serialTemplate = (row: OntNeighborFullItem) => {
   return (
     <Link
       href={`/ftth/ont/${encodeURIComponent(row.serial)}/info`}
@@ -366,38 +52,15 @@ const serialTemplate = (row: NeighborRow) => {
   );
 };
 
-const estadoTemplate = (row: NeighborRow) => {
-  const isOk = row.estado === 'OK';
-  const estadoColor = isOk ? 'var(--state-01)' : 'var(--state-03)';
-  return (
-    <span className="inline-flex items-center justify-center">
-      {isOk ? (
-        <IoCheckmarkSharp
-          size={15}
-          className="rounded-full text-white"
-          style={{ backgroundColor: estadoColor }}
-        />
-      ) : (
-        <IoCloseSharp
-          size={15}
-          className="rounded-full text-white"
-          style={{ backgroundColor: estadoColor }}
-        />
-      )}
-    </span>
-  );
+const ontRxTemplate = (row: OntNeighborFullItem) => {
+  return <span style={{ color: getOntRxColor(row.ontRx) }}>{row.ontRx}</span>;
 };
 
-const ontRxTemplate = (row: NeighborRow) => {
-  const ontRxColor =
-    row.ontRx > 0 ? 'var(--state-01)' : row.ontRx === 0 ? 'var(--state-02)' : 'var(--state-03)';
-  return <span style={{ color: ontRxColor }}>{row.ontRx.toFixed(2)}</span>;
-};
-
-export const OntNeighborsTableFull = () => {
-  const [selectedRows, setSelectedRows] = useState<NeighborRow[]>([]);
+export const OntNeighborsTableFull = ({ neighbors }: Props) => {
+  const [selectedRows, setSelectedRows] = useState<OntNeighborFullItem[]>([]);
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(25);
+  const [selectedStatus, setSelectedStatus] = useState<string | null>(null);
   const [isRowsMenuOpen, setIsRowsMenuOpen] = useState(false);
   const [rowsMenuPosition, setRowsMenuPosition] = useState<{ top: number; left: number } | null>(
     null
@@ -407,6 +70,61 @@ export const OntNeighborsTableFull = () => {
   const canCompare = selectedRows.length >= 2;
   const isCompactRowsMode = rows <= 5;
   const pageLinkSize = isCompactRowsMode ? 3 : 5;
+
+  const estadoTemplate = (row: OntNeighborFullItem) => {
+    const status = row.estado.trim().toUpperCase();
+    const label = formatStatusLabel(row.estado);
+
+    if (status === 'GOOD') {
+      return (
+        <button
+          type="button"
+          className="inline-flex items-center justify-center"
+          onClick={() => setSelectedStatus(label)}
+          aria-label={`Ver estado ${label}`}
+        >
+          <IoCheckmarkSharp size={15} className="rounded-full bg-(--state-01) text-white p-px" />
+        </button>
+      );
+    }
+
+    if (status === 'INTERRUPTED') {
+      return (
+        <button
+          type="button"
+          className="inline-flex items-center justify-center"
+          onClick={() => setSelectedStatus(label)}
+          aria-label={`Ver estado ${label}`}
+        >
+          <IoCloseSharp size={15} className="rounded-full bg-(--state-03) text-white p-px" />
+        </button>
+      );
+    }
+
+    if (status === 'REDUCED_ROBUSTNESS' || status === 'DEGRADED') {
+      return (
+        <button
+          type="button"
+          className="inline-flex items-center justify-center"
+          onClick={() => setSelectedStatus(label)}
+          aria-label={`Ver estado ${label}`}
+        >
+          <IoCheckmarkSharp size={15} className="rounded-full bg-(--state-02) text-white p-px" />
+        </button>
+      );
+    }
+
+    return (
+      <button
+        type="button"
+        className="inline-flex items-center justify-center"
+        onClick={() => setSelectedStatus(label)}
+        aria-label={`Ver estado ${label}`}
+      >
+        <IoCloseSharp size={15} className="rounded-full bg-(--gray-02) text-white p-px" />
+      </button>
+    );
+  };
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -457,20 +175,34 @@ export const OntNeighborsTableFull = () => {
       </div>
 
       <div
-        className={`-mx-3 min-h-0 overflow-x-auto border-t border-black/10 pt-2 dark:border-white/10 dark:bg-(--card) ${
+        className={`-mx-3 min-h-0 overflow-x-auto border-t border-black/10 pt-2 dark:border-white/10 dark:bg-(--card) relative ${
           isCompactRowsMode ? '' : 'flex-1'
         }`}
       >
+        {selectedStatus && (
+          <div className="absolute right-3 top-2 z-20 rounded-md border border-(--table-stroke) bg-(--table-header) px-3 py-1.5 text-xs text-(--text-secondary) shadow-sm">
+            Estado seleccionado:{' '}
+            <span className="font-semibold text-(--text-primary)">{selectedStatus}</span>
+            <button
+              type="button"
+              className="ml-2 inline-flex h-4 w-4 items-center justify-center rounded text-(--text-secondary) hover:text-(--text-primary)"
+              onClick={() => setSelectedStatus(null)}
+              aria-label="Cerrar cartel de estado"
+            >
+              <IoCloseSharp size={12} />
+            </button>
+          </div>
+        )}
         <DataTable
-          value={mockNeighborsFull}
+          value={neighbors}
           selection={selectedRows}
-          onSelectionChange={e => setSelectedRows(e.value as NeighborRow[])}
+          onSelectionChange={e => setSelectedRows((e.value as OntNeighborFullItem[]) ?? [])}
           first={first}
           onPage={e => {
             setFirst(e.first);
             setRows(e.rows);
           }}
-          dataKey="serial"
+          dataKey="rowId"
           selectionMode="multiple"
           size="small"
           paginator
@@ -478,6 +210,7 @@ export const OntNeighborsTableFull = () => {
           rowsPerPageOptions={[25, 50, 100]}
           paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink"
           pageLinkSize={pageLinkSize}
+          emptyMessage="Sin Datos"
           paginatorRight={
             <label className="inline-flex items-center gap-2 text-xs text-(--text-secondary) dark:text-white/75">
               Filas
@@ -565,14 +298,50 @@ export const OntNeighborsTableFull = () => {
           className={ONT_NEIGHBORS_TABLE_FULL_CLASSNAME}
         >
           <Column selectionMode="multiple" />
-          <Column field="serial" header="Serial" body={serialTemplate} />
-          <Column field="estado" header="Estado" body={estadoTemplate} />
-          <Column field="ontRx" header="Ont Rx" body={ontRxTemplate} />
+          <Column field="serial" header="Serial" body={serialTemplate} sortable />
+          <Column field="estado" header="Estado" body={estadoTemplate} sortable />
+          <Column field="ontRx" header="Ont Rx" body={ontRxTemplate} sortable />
           {TABLE_COLUMNS.map(({ field, header }) => (
-            <Column key={field} field={field} header={header} />
+            <Column key={field} field={field} header={header} sortable />
           ))}
         </DataTable>
       </div>
     </div>
   );
 };
+
+function formatStatusLabel(status: string): string {
+  const normalized = status.trim();
+  if (!normalized) {
+    return 'Sin Datos';
+  }
+
+  const textWithSpaces = normalized.replace(/_/g, ' ');
+  if (textWithSpaces === textWithSpaces.toUpperCase()) {
+    const lower = textWithSpaces.toLowerCase();
+    return `${lower.charAt(0).toUpperCase()}${lower.slice(1)}`;
+  }
+
+  return textWithSpaces;
+}
+
+function getOntRxColor(rawValue: string): string {
+  const value = Number.parseFloat(rawValue.replace(',', '.'));
+  if (Number.isNaN(value)) {
+    return 'var(--text-secondary)';
+  }
+
+  if (value < -27) {
+    return 'var(--state-03)';
+  }
+
+  if (value < -24.5) {
+    return 'var(--state-02)';
+  }
+
+  if (value > -12) {
+    return 'var(--state-03)';
+  }
+
+  return 'var(--state-01)';
+}

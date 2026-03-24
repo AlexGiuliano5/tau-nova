@@ -6,8 +6,7 @@ import { useEffect, useMemo } from 'react';
 import { FtthBreadcrumb, FtthButton } from '@/components';
 import { getTreeFromLocalStorage } from '@/lib/ftth/tree-cache';
 import { useFtthTreeStore } from '@/store/ftth/tree-store';
-import type { LevelKey } from '@/utils/ftth/tree-navigation';
-import { buildHref, buildOltHref, buildViewModel } from '@/utils/ftth/tree-navigation';
+import { buildNextLevelHref, buildOltHref, buildViewModel } from '@/utils/ftth/tree-navigation';
 
 export const FtthTreeNavigator = () => {
   const searchParams = useSearchParams();
@@ -61,10 +60,14 @@ export const FtthTreeNavigator = () => {
               );
             }
 
-            const values: Partial<Record<LevelKey, string>> = { ...viewModel.selectedByKey };
-            values[viewModel.nextKey] = node.name;
-
-            return <FtthButton key={node.name} title={node.name} chevron href={buildHref(values)} />;
+            return (
+              <FtthButton
+                key={node.name}
+                title={node.name}
+                chevron
+                href={buildNextLevelHref(viewModel.selectedByKey, viewModel.nextKey, node.name)}
+              />
+            );
           })
         ) : (
           <div className="text-sm text-white/90">

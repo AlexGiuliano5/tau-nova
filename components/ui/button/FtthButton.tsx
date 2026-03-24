@@ -11,8 +11,6 @@ interface BaseProps {
   href?: string;
 }
 
-type Props = BaseProps;
-
 export const FtthButton = ({
   title,
   icon,
@@ -20,7 +18,7 @@ export const FtthButton = ({
   href,
   disabled = false,
   className
-}: Props) => {
+}: BaseProps) => {
   const buttonClassName = clsx(
     'flex items-center px-5 w-full h-[60px] gap-4 rounded-lg shadow-lg text-white bg-(--primary-2) dark:bg-(--secondary-3)',
     { 'opacity-50 cursor-not-allowed': disabled },
@@ -39,7 +37,6 @@ export const FtthButton = ({
     </div>
   );
 
-  // Si recibe `href`, renderiza navegación; si no, renderiza un botón de acción.
   if (href && !disabled) {
     return (
       <Link href={href} className={buttonClassName}>

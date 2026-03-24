@@ -27,25 +27,22 @@ interface SidebarProps {
 
 function getInitials(fullname?: string): string {
   if (!fullname) {
-    return 'US';
+    return 'NA';
   }
 
   const parts = fullname.split(' ').filter(Boolean);
 
-  // Si hay 3+ palabras, usar inicial del primer nombre y primer apellido.
-  if (parts.length >= 3) {
-    return `${parts[0][0]?.toUpperCase() ?? ''}${parts[2][0]?.toUpperCase() ?? ''}`;
-  }
-
-  if (parts.length === 2) {
-    return `${parts[0][0]?.toUpperCase() ?? ''}${parts[1][0]?.toUpperCase() ?? ''}`;
+  if (parts.length >= 2) {
+    const first = parts[0][0]?.toUpperCase() ?? '';
+    const last = parts[parts.length - 1][0]?.toUpperCase() ?? '';
+    return `${first}${last}`;
   }
 
   if (parts.length === 1) {
     return parts[0].slice(0, 2).toUpperCase();
   }
 
-  return 'US';
+  return 'NA';
 }
 
 export const Sidebar = ({ userInfo }: SidebarProps) => {

@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 import {
   getTreeFromLocalStorage,
@@ -22,14 +22,13 @@ export const FtthTreeBootstrapper = ({ treeData }: Props) => {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Si vino respuesta server post-login, pisa cache. Si no, usa cache local vigente.
     if (isValidTreeData(treeData)) {
       setTreeData(treeData);
       saveTreeToLocalStorage(treeData);
     } else {
-      const cachedTreeData = getTreeFromLocalStorage();
-      if (isValidTreeData(cachedTreeData)) {
-        setTreeData(cachedTreeData);
+      const cachedTree = getTreeFromLocalStorage();
+      if (isValidTreeData(cachedTree)) {
+        setTreeData(cachedTree);
       }
     }
   }, [setTreeData, treeData]);
@@ -39,7 +38,6 @@ export const FtthTreeBootstrapper = ({ treeData }: Props) => {
       return;
     }
 
-    // Evita refrescos repetidos si el usuario actualiza estando en /ftth?refreshTree=1.
     const nextParams = new URLSearchParams(searchParams.toString());
     nextParams.delete('refreshTree');
     const query = nextParams.toString();

@@ -11,6 +11,8 @@ export interface TreeNavigatorViewModel {
   selectedByKey: Partial<Record<LevelKey, string>>;
 }
 
+type BreadcrumbInput = string[];
+
 export function buildHref(values: Partial<Record<LevelKey, string>>): string {
   const params = new URLSearchParams();
 
@@ -29,10 +31,36 @@ export function buildOltHref(oltName: string): string {
   return `/ftth/olt/${encodeURIComponent(oltName)}`;
 }
 
+export function buildNextLevelHref(
+  selectedByKey: Partial<Record<LevelKey, string>>,
+  nextKey: LevelKey,
+  nextValue: string
+): string {
+  const values: Partial<Record<LevelKey, string>> = { ...selectedByKey };
+  values[nextKey] = nextValue;
+  return buildHref(values);
+}
+
 function getSelectedNodeName(searchParams: URLSearchParams, key: LevelKey): string | null {
   const rawValue = searchParams.get(key);
   const value = rawValue?.trim();
   return value ? value : null;
+}
+
+function buildBreadcrumbTitle(path: BreadcrumbInput): string {
+  if (path.length >= 3) {
+    return `... / ${path[path.length - 2]} / ${path[path.length - 1]}`;
+  }
+
+  if (path.length === 2) {
+    return `${path[0]} / ${path[1]}`;
+  }
+
+  if (path.length === 1) {
+    return path[0];
+  }
+
+  return 'Búsqueda de árbol';
 }
 
 export function buildViewModel(tree: Tree[], searchParams: URLSearchParams): TreeNavigatorViewModel {
@@ -77,14 +105,7 @@ export function buildViewModel(tree: Tree[], searchParams: URLSearchParams): Tre
   }
   const backHref = selectedCount > 0 ? buildHref(previousValues) : '/ftth/busqueda';
 
-  const breadcrumbTitle =
-    selectedPath.length >= 3
-      ? `... / ${selectedPath[selectedPath.length - 2]} / ${selectedPath[selectedPath.length - 1]}`
-      : selectedPath.length === 2
-        ? `${selectedPath[0]} / ${selectedPath[1]}`
-        : selectedPath.length === 1
-          ? selectedPath[0]
-          : 'Búsqueda de árbol';
+  const breadcrumbTitle = buildBreadcrumbTitle(selectedPath);
 
   return {
     breadcrumbTitle,

@@ -54,8 +54,9 @@ export function getTreeFromLocalStorage(): BffTreeResponse | null {
       return null;
     }
 
-    if (isValidTreeData(parsed.treeData ?? null)) {
-      return parsed.treeData ?? null;
+    const cachedTreeData = parsed.treeData ?? null;
+    if (isValidTreeData(cachedTreeData)) {
+      return cachedTreeData;
     }
 
     return null;
