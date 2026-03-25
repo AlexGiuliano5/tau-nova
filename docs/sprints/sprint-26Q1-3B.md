@@ -42,6 +42,7 @@ Implementar autenticación base para ambientes bajos, con login por usuario/cont
 - Se unificó `LastMetricsByOnt` en helper compartido memoizado por request para evitar duplicar fetch base entre cards.
 - Se extrajeron utilidades compartidas de mapping/normalización de `metricsGrid` para reducir duplicación en actions.
 - Se añadió cache en memoria de corta vida para `metricsGrid` para mejorar transición de preview a tabla completa dentro de la misma sesión.
+- Se implementó el reporte por voz en `app/ftth/reporte` (pasos: grabar, preview y edición con transcripción y selector de categoría).
 
 ## Contratos de estado documentados
 

@@ -10,11 +10,13 @@ import { useShallow } from 'zustand/react/shallow';
 import { useUIstore } from '@/store/ui/ui-store';
 
 export const MobileBottomNav = () => {
-  const { isSideMenuOpen } = useUIstore(useShallow(state => ({ isSideMenuOpen: state.isSideMenuOpen })));
+  const { isSideMenuOpen } = useUIstore(
+    useShallow(state => ({ isSideMenuOpen: state.isSideMenuOpen }))
+  );
   const pathname = usePathname();
   const isHomeActive = pathname === '/ftth';
   const isSearchActive = pathname.startsWith('/ftth/busqueda');
-  const isReportActive = pathname.startsWith('/ftth/report');
+  const isReportActive = pathname.startsWith('/ftth/reporte');
 
   return (
     <footer
@@ -63,12 +65,10 @@ export const MobileBottomNav = () => {
         <FiTool size={32} />
       </button>
 
-      <button
-        type="button"
-        disabled
-        aria-disabled="true"
-        title="Próximamente"
-        className="flex flex-col items-center text-(--primary-2) dark:text-white opacity-50 cursor-not-allowed"
+      <Link
+        href="/ftth/reporte"
+        aria-current={isReportActive ? 'page' : undefined}
+        className="flex flex-col items-center text-(--primary-2) dark:text-white"
       >
         <div
           className={clsx('p-2 rounded-full', {
@@ -77,7 +77,7 @@ export const MobileBottomNav = () => {
         >
           <IoReaderOutline size={32} />
         </div>
-      </button>
+      </Link>
     </footer>
   );
 };
